@@ -1,0 +1,7 @@
+- name: Task lear ansible
+  hosts: coba
+  vars_files:
+    - group_vars/database/vars
+    - group_vars/database/vault
+  roles:
+    - installMySql

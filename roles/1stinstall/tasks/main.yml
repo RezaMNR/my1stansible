@@ -1,4 +1,4 @@
--name: Set timezone to Asia/Jakarta
+- name: Set timezone to Asia/Jakarta
   timezone:
     name: Asia/Jakarta
 
@@ -7,21 +7,13 @@
     src: sshd_config.j2
     dest: /etc/ssh/sshd_config
   notify:
-    - Restart sshd
+    - restart sshd
 
 - name: Create /root/.ssh dir
   file:
     path: /root/.ssh
     state: directory
     mode: 0700
-
-- stat: path=/root/.ssh/authorized_keys
-  register: status
-
-- name: Remove file attributes for authorized_key
-  shell: /usr/bin/chattr -ia /root/.ssh/authorized_keys
-  ignore_errors: True
-  when: status.stat.exists is defined
 
 - name: Set authorized_keys for root user
   template:
