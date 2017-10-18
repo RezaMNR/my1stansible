@@ -17,13 +17,8 @@
     path: "/var/lib/mysql/mysql.sock"
     state: present
 
-- name: Write some files
-  copy:
-    src: "{{ mysql_root_password }}"
-    dest: "/root/sqlpass.txt"
-    owner: root
-    group: root
-    mode: 0644
+- debug:
+    msg: "{{ mysql_root_password }}"
 
 - name: Update root password
   mysql_user:
